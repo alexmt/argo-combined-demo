@@ -1,3 +1,0 @@
-- op: replace
-  path: /spec/ports/0/port
-  value: 9001

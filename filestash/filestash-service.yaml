@@ -5,7 +5,8 @@ metadata:
 spec:
   ports:
     - name: tcp-kubecon-demo-filestash
-      port: 80
+      port: 9001
       targetPort: 8334
   selector:
     app.kubernetes.io/name: kubecon-demo-filestash
+  type: LoadBalancer

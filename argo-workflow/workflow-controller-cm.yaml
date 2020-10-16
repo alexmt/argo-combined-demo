@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: workflow-controller-configmap
+data:
+  artifactRepository: |
+   archiveLogs: false
+   s3:
+     endpoint: kubecon-demo-minio:9000
+     bucket: photos
+     insecure: true
+     accessKeySecret:
+       name: kubecon-demo-minio
+       key: accesskey
+     secretKeySecret:
+       name: kubecon-demo-minio
+       key: secretkey

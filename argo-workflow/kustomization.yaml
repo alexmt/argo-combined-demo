@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- https://raw.githubusercontent.com/argoproj/argo/v2.11.5/manifests/install.yaml
+- workflow-role-binding.yaml
+- workflow-role.yaml
+
+patchesStrategicMerge:
+- argo-server-service.yaml
+- workflow-controller-cm.yaml
+- argo-binding.yaml
+- argo-server-binding.yaml
