@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- bases/filestash
+- bases/minio
+
+patchesStrategicMerge:
+- overlays/kubecon-demo-filestash-service.yaml
+- overlays/kubecon-demo-minio-service.yaml
+- overlays/kubecon-demo-minio-deployment.yaml
+- overlays/kubecon-demo-filestash-deployment.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+- name: kubecon-demo-filestash-cm
+  files:
+  - resources/kubecon-demo-filestash-config.json
+
+patchesJson6902:
+- path: overlays/kubecon-demo-filestash-service-port.yaml
+  target:
+    group: ''
+    version: v1
+    kind: Service
+    name: kubecon-demo-filestash

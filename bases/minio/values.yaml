@@ -1,0 +1,10 @@
+minio:
+  accessKey: admin
+  secretKey: password
+  persistence:
+    enabled: false
+  defaultBucket:
+    enabled: true
+    name: photos
+    policy: public
+    purge: false

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubecon-demo
+spec:
+  project: default
+  source:
+    repoURL: 'file:///Users/alexandermatyushentsev/root/kubecon-demo'
+    path: .
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kubecon-demo
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
