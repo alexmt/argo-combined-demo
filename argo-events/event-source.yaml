@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: minio
+spec:
+  minio:
+    example:
+      bucket:
+        name: kubecon-demo
+      endpoint: kubecon-demo-minio:9000
+      events:
+        - s3:ObjectCreated:Put
+      insecure: true
+      filter:
+        suffix: ".jpg"
+      accessKey:
+        name: kubecon-demo-minio
+        key: accesskey
+      secretKey:
+        name: kubecon-demo-minio
+        key: secretkey

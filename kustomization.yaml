@@ -5,3 +5,4 @@ resources:
 - filestash
 - minio
 - argo-workflow
+- argo-events
