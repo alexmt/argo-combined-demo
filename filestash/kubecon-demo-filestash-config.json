@@ -81,7 +81,7 @@
             "advanced": true,
             "endpoint": "http://kubecon-demo-minio:9000",
             "label": "S3",
-            "path": "/photos",
+            "path": "/kubecon-demo",
             "secret_access_key": "password",
             "type": "s3"
         }

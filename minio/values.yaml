@@ -5,6 +5,6 @@ minio:
     enabled: false
   defaultBucket:
     enabled: true
-    name: photos
+    name: kubecon-demo
     policy: public
     purge: false

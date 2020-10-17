@@ -7,8 +7,9 @@ data:
    archiveLogs: false
    s3:
      endpoint: kubecon-demo-minio:9000
-     bucket: photos
+     bucket: kubecon-demo
      insecure: true
+     keyPrefix: artifacts
      accessKeySecret:
        name: kubecon-demo-minio
        key: accesskey

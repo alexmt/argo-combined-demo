@@ -140,7 +140,7 @@ data:
     scheme=http
     connectToMinio $scheme
     # Create the bucket
-    createBucket photos public false
+    createBucket kubecon-demo public false
 ---
 # Source: upstream-deps/charts/minio/templates/post-install-prometheus-metrics-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -246,7 +246,7 @@ spec:
         release: kubecon-demo
       annotations:
         checksum/secrets: 3f8bdfc677b3b898baff15419aae9908c1af9ba1d8b20e3bdb2151cd0f7baa0c
-        checksum/config: 98f4bdcc743767fc6601392057ddd0d3f945234d411c2dcae488c00f9c051613
+        checksum/config: 5e85ed74c83fb5fa0cc205204542e0c9a32e99c14206088d1266c564d0231b84
     spec:
       serviceAccountName: "kubecon-demo-minio"
       containers:
