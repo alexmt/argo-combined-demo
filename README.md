@@ -10,16 +10,16 @@ Argoproj is a set of loosely coupled tools that aims to unleash to power of Kube
 * Argo CD - Declarative continuous delivery for Kubernetes
 * Argo Rollouts - Progressive delivery for Kubernetes
 
-Each Argo sub-project is focused on a separate use-case and can be used independently but together Argo projects
-complement each other and form the **powerful application delivery platform**.
+Each Argo sub-project is focused on a separate use-case and can be used independently. But together, Argo projects
+complement each other and form a **powerful application delivery platform**.
 
 ## Demo
 
 This repository demonstrates how Argo allows gluing disconnected open-source projects into a complex system that
-the solves real use-case with zero code written.
+solves real-world use cases, with zero code written.
 
-We are going to build a web application consists of multiple microservices and a background batch processing
-system that leverages machine learning. The application allows user to upload an image, stores the photo in an
+We are going to build a web application consisting of multiple microservices as well as a background batch processing
+system that leverages machine learning. The application allows users to upload an image, stores the photo in an
 S3 compatible storage and produces a new image with highlighted faces on it using a pre-trained ML model.
 
 ![image](https://user-images.githubusercontent.com/426437/96329261-e9e35900-0fff-11eb-9da1-ee1bb29b761f.png)
@@ -27,7 +27,7 @@ S3 compatible storage and produces a new image with highlighted faces on it usin
 ## Components
 
 Instead of building an application from scratch, we are going to leverage existing open-source projects and
-leverage Argo projects to make them work together:
+the Argo projects to make them work together for profit:
 
 * [minio](https://github.com/minio/minio) - Kubernetes native S3 compatible storage. Minio is going to store
 user uploaded images and ML workflows outputs.
@@ -45,7 +45,7 @@ manages components listed above it the Kubernetes cluster and encapsulates both 
 
 ## Let's do it
 
-1. First of all we need a cluster. Nothing fancy is required here. Use your GKE, EKS cluster or just run
+1. First of all we need a Kubernetes cluster. Nothing fancy is required here. Use your GKE, EKS cluster or just run
 [minikube](https://github.com/kubernetes/minikube) cluster on your laptop.
 2. Install Argo CD. Follow the getting started instructions in Argo CD [documentation](https://argoproj.github.io/argo-cd/getting_started/).
 > TLDR:
@@ -53,13 +53,13 @@ manages components listed above it the Kubernetes cluster and encapsulates both 
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
-3. Deploy the application using Argo CD:
+3. Deploy the demo scenario using Argo CD, which in turn will spawn all required components in your K8s cluster:
 
 ```
 git clone https://github.com/alexmt/kubecon-2020-demo.git
 kubectl apply -f kubecon-2020-demo/demo -n argocd
 ```
-4. Check components status in Argo CD user interface.
+4. Check the components' status in Argo CD user interface.
 
 ![image](https://user-images.githubusercontent.com/426437/96329250-d46e2f00-0fff-11eb-812d-67d3cf01a801.png)
 
