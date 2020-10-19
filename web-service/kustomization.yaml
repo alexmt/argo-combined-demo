@@ -5,6 +5,8 @@ resources:
 - filestash-rollout.yaml
 - filestash-service.yaml
 - filestash-preview-service.yaml
+- sensor.yaml
+- event-source.yaml
 
 generatorOptions:
   disableNameSuffixHash: true

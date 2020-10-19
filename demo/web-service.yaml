@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: filestash
+  name: web-service
 spec:
   project: default
   source:
     repoURL: https://github.com/alexmt/kubecon-2020-demo.git
-    path: filestash
+    path: web-service
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'

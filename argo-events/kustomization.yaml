@@ -3,8 +3,6 @@ kind: Kustomization
 
 resources:
 - https://raw.githubusercontent.com/argoproj/argo-events/v1.0.0/manifests/install.yaml
-- sensor.yaml
-- event-source.yaml
 - event-bus.yaml
 
 namespace: kubecon-demo
