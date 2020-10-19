@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- https://raw.githubusercontent.com/argoproj/argo-rollouts/v0.9.2/manifests/install.yaml
+
+patchesStrategicMerge:
+- argo-rollouts-clusterrole-binding.yaml

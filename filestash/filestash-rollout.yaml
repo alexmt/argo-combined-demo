@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: kubecon-demo-filestash
 spec:
@@ -12,7 +12,7 @@ spec:
         app.kubernetes.io/name: kubecon-demo-filestash
     spec:
       containers:
-        - image: 'machines/filestash:latest'
+        - image: 'machines/filestash:b26eb6b'
           imagePullPolicy: Always
           name: filestash
           ports:
@@ -27,3 +27,8 @@ spec:
                 path: config.json
             name: kubecon-demo-filestash-cm
           name: config-volume
+  strategy:
+    blueGreen: 
+      activeService: kubecon-demo-filestash
+      previewService: kubecon-demo-filestash-preview
+      autoPromotionEnabled: false
