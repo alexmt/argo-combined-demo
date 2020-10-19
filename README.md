@@ -29,6 +29,8 @@ S3 compatible storage and produces a new image with highlighted faces on it usin
 Instead of building an application from scratch, we are going to leverage existing open-source projects and
 the Argo projects to make them work together for profit:
 
+![image](https://user-images.githubusercontent.com/426437/96401561-8f293900-1188-11eb-9b3d-a8ff3b714a2d.png)
+
 * [minio](https://github.com/minio/minio) - Kubernetes native S3 compatible storage. Minio is going to store
 user uploaded images and ML workflows outputs.
 * [filestash](https://www.filestash.app/) - A modern web client for the storage of your choice. Filestash
