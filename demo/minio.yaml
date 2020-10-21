@@ -2,11 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: minio
+  labels:
+    type: infrastructure
 spec:
   project: default
   source:
     repoURL: https://github.com/alexmt/kubecon-2020-demo.git
-    path: minio
+    path: infrastructure/minio
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
