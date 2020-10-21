@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: argo-events
+      labels:
+        type: infrastructure
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/alexmt/kubecon-2020-demo.git
+        path: infrastructure/argo-events
+      destination: &dest
+        server: "https://kubernetes.default.svc"
+        namespace: kubecon-demo
+      syncPolicy: &policy
+        automated:
+          prune: true
+          selfHeal: true
+
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: argo-rollouts
+      labels:
+        type: infrastructure
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/alexmt/kubecon-2020-demo.git
+        path: infrastructure/argo-rollouts
+      destination: *dest
+      syncPolicy: *policy
+
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: argo-workflows
+      labels:
+        type: infrastructure
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/alexmt/kubecon-2020-demo.git
+        path: infrastructure/argo-workflow
+      destination: *dest
+      syncPolicy: *policy
+
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: minio
+      labels:
+        type: infrastructure
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/alexmt/kubecon-2020-demo.git
+        path: infrastructure/minio
+      destination: *dest
+      syncPolicy: *policy
+
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: web-service
+      labels:
+        type: application
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/alexmt/kubecon-2020-demo.git
+        path: web-service
+      destination: *dest
+      syncPolicy: *policy
+
+  - apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: kubecon-demo
