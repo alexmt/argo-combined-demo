@@ -67,7 +67,7 @@ kubectl apply -f https://raw.githubusercontent.com/alexmt/kubecon-2020-demo/mast
 
 ## Try it
 
-1. Navigate to [filestash](https://www.filestash.app/) and upload an image using upload button.
+1. Navigate to [filestash](https://www.filestash.app/) and upload an image using upload button. Note: image file must have ".jpg" extension.
 2. Use [argo workflows](https://github.com/argoproj/argo) user interface to observe background processing process.
 ![image](https://user-images.githubusercontent.com/426437/96329233-bdc7d800-0fff-11eb-88ad-d3bb0f395b8d.png)
 3. See image processing results in [filestash](https://www.filestash.app/) interface.
