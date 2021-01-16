@@ -3,32 +3,32 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: kubecon-demo-minio-update-prometheus-secret
+  name: demo-minio-update-prometheus-secret
   labels:
     app: minio-update-prometheus-secret
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
 ---
 # Source: upstream-deps/charts/minio/templates/serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: "kubecon-demo-minio"
+  name: "demo-minio"
   labels:
     app: minio
     chart: minio-7.2.1
-    release: "kubecon-demo"
+    release: "demo"
 ---
 # Source: upstream-deps/charts/minio/templates/secrets.yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: kubecon-demo-minio
+  name: demo-minio
   labels:
     app: minio
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
 type: Opaque
 data:
@@ -39,11 +39,11 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kubecon-demo-minio
+  name: demo-minio
   labels:
     app: minio
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
 data:
   initialize: |-
@@ -140,17 +140,17 @@ data:
     scheme=http
     connectToMinio $scheme
     # Create the bucket
-    createBucket kubecon-demo public false
+    createBucket demo public false
 ---
 # Source: upstream-deps/charts/minio/templates/post-install-prometheus-metrics-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: kubecon-demo-minio-update-prometheus-secret
+  name: demo-minio-update-prometheus-secret
   labels:
     app: minio-update-prometheus-secret
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
 rules:
   - apiGroups:
@@ -163,7 +163,7 @@ rules:
       - update
       - patch
     resourceNames:
-      - kubecon-demo-minio-prometheus
+      - demo-minio-prometheus
   - apiGroups:
       - ""
     resources:
@@ -177,35 +177,35 @@ rules:
     verbs:
       - get
     resourceNames:
-      - kubecon-demo-minio
+      - demo-minio
 ---
 # Source: upstream-deps/charts/minio/templates/post-install-prometheus-metrics-rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: kubecon-demo-minio-update-prometheus-secret
+  name: demo-minio-update-prometheus-secret
   labels:
     app: minio-update-prometheus-secret
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: kubecon-demo-minio-update-prometheus-secret
+  name: demo-minio-update-prometheus-secret
 subjects:
   - kind: ServiceAccount
-    name: kubecon-demo-minio-update-prometheus-secret
+    name: demo-minio-update-prometheus-secret
 ---
 # Source: upstream-deps/charts/minio/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubecon-demo-minio
+  name: demo-minio
   labels:
     app: minio
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
 spec:
   type: ClusterIP
@@ -216,17 +216,17 @@ spec:
       targetPort: 9000
   selector:
     app: minio
-    release: kubecon-demo
+    release: demo
 ---
 # Source: upstream-deps/charts/minio/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubecon-demo-minio
+  name: demo-minio
   labels:
     app: minio
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
 spec:
   strategy:
@@ -237,18 +237,18 @@ spec:
   selector:
     matchLabels:
       app: minio
-      release: kubecon-demo
+      release: demo
   template:
     metadata:
-      name: kubecon-demo-minio
+      name: demo-minio
       labels:
         app: minio
-        release: kubecon-demo
+        release: demo
       annotations:
-        checksum/secrets: 3f8bdfc677b3b898baff15419aae9908c1af9ba1d8b20e3bdb2151cd0f7baa0c
-        checksum/config: 5e85ed74c83fb5fa0cc205204542e0c9a32e99c14206088d1266c564d0231b84
+        checksum/secrets: c221e1cbc62563a3a8c0143af58178301358f91a5c57c3c7fc98984011982bb2
+        checksum/config: 3a947ac7c7b7381c3685c6d4146cf7e31a605ffec2c71e0c0a6a336060cdd46c
     spec:
-      serviceAccountName: "kubecon-demo-minio"
+      serviceAccountName: "demo-minio"
       containers:
         - name: minio
           image: "minio/minio:RELEASE.2020-10-09T22-55-05Z"
@@ -265,12 +265,12 @@ spec:
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: kubecon-demo-minio
+                  name: demo-minio
                   key: accesskey
             - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: kubecon-demo-minio
+                  name: demo-minio
                   key: secretkey
             - name: MINIO_API_READY_DEADLINE
               value: "5s"
@@ -292,17 +292,17 @@ spec:
           emptyDir: {}
         - name: minio-user
           secret:
-            secretName: kubecon-demo-minio
+            secretName: demo-minio
 ---
 # Source: upstream-deps/charts/minio/templates/post-install-create-bucket-job.yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: kubecon-demo-minio-make-bucket-job
+  name: demo-minio-make-bucket-job
   labels:
     app: minio-make-bucket-job
     chart: minio-7.2.1
-    release: kubecon-demo
+    release: demo
     heritage: Helm
   annotations:
     "helm.sh/hook": post-install,post-upgrade
@@ -312,7 +312,7 @@ spec:
     metadata:
       labels:
         app: minio-job
-        release: kubecon-demo
+        release: demo
     spec:
       restartPolicy: OnFailure      
       volumes:
@@ -320,10 +320,10 @@ spec:
           projected:
             sources:
             - configMap:
-                name: kubecon-demo-minio
+                name: demo-minio
             - secret:
-                name: kubecon-demo-minio
-      serviceAccountName: "kubecon-demo-minio"
+                name: demo-minio
+      serviceAccountName: "demo-minio"
       containers:
       - name: minio-mc
         image: "minio/mc:RELEASE.2020-10-03T02-54-56Z"
@@ -331,7 +331,7 @@ spec:
         command: ["/bin/sh", "/config/initialize"]
         env:
           - name: MINIO_ENDPOINT
-            value: kubecon-demo-minio
+            value: demo-minio
           - name: MINIO_PORT
             value: "9000"
         volumeMounts:

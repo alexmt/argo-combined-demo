@@ -12,9 +12,9 @@ generatorOptions:
   disableNameSuffixHash: true
 
 configMapGenerator:
-- name: kubecon-demo-filestash-cm
+- name: demo-filestash-cm
   files:
-  - kubecon-demo-filestash-config.json
+  - demo-filestash-config.json
 
 # Upgrade to new version
 # images:

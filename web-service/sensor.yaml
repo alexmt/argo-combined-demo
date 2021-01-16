@@ -57,15 +57,15 @@ spec:
                     - name: photo
                       path: /photo.jpg
                       s3:
-                        endpoint: kubecon-demo-minio:9000
+                        endpoint: demo-minio:9000
                         insecure: true
-                        bucket: kubecon-demo
+                        bucket: demo
                         key: "{{inputs.parameters.path}}"
                         accessKeySecret:
-                          name: kubecon-demo-minio
+                          name: demo-minio
                           key: accesskey
                         secretKeySecret:
-                          name: kubecon-demo-minio
+                          name: demo-minio
                           key: secretkey
                   container:
                     image: alexmt/facedetect
@@ -86,16 +86,16 @@ spec:
                     - name: AWS_ACCESS_KEY_ID
                       valueFrom:
                         secretKeyRef:
-                          name: kubecon-demo-minio
+                          name: demo-minio
                           key: accesskey
                     - name: AWS_SECRET_ACCESS_KEY
                       valueFrom:
                         secretKeyRef:
-                          name: kubecon-demo-minio
+                          name: demo-minio
                           key: secretkey
                     image: amazon/aws-cli
                     command: [aws]
-                    args: ["--endpoint-url", "http://kubecon-demo-minio:9000/", "s3", "cp", "/tmp/file", "s3://kubecon-demo/{{workflow.parameters.path}}.png"]
+                    args: ["--endpoint-url", "http://demo-minio:9000/", "s3", "cp", "/tmp/file", "s3://demo/{{workflow.parameters.path}}.png"]
           # The container args from the workflow are overridden by the s3 notification key
           parameters:
             - src:

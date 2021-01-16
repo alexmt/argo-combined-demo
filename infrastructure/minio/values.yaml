@@ -5,6 +5,6 @@ minio:
     enabled: false
   defaultBucket:
     enabled: true
-    name: kubecon-demo
+    name: demo
     policy: public
     purge: false

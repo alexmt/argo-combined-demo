@@ -1,4 +1,4 @@
-# Multiply the Power of Argo Projects By Using Them Together
+# Argoproj - Application Delivery Platform
 
 ![argo](https://raw.githubusercontent.com/argoproj/argoproj/master/docs/assets/argo.png)
 
@@ -58,7 +58,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 3. Deploy the demo scenario using Argo CD, which in turn will spawn all required components in your K8s cluster:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/alexmt/kubecon-2020-demo/master/demo.yaml -n argocd
+kubectl apply -f https://raw.githubusercontent.com/alexmt/argo-combined-demo/master/demo.yaml -n argocd
 ```
 4. Check the components' status in Argo CD user interface.
 
@@ -67,7 +67,7 @@ kubectl apply -f https://raw.githubusercontent.com/alexmt/kubecon-2020-demo/mast
 
 ## Try it
 
-1. Navigate to the external IP address of `kubecon-demo-filestash` service on port `9001` and upload an image using the
+1. Navigate to the external IP address of `demo-filestash` service on port `9001` and upload an image using the
 [filestash](https://www.filestash.app/) web user interface. Note: image file must have ".jpg" extension.
 2. Use [argo workflows](https://github.com/argoproj/argo) user interface to observe background processing process.
 Workflows user interface is available via external IP address of `argo-server` service on port `2746`.
@@ -75,11 +75,3 @@ Workflows user interface is available via external IP address of `argo-server` s
 3. See image processing results in [filestash](https://www.filestash.app/) interface.
 ![image](https://user-images.githubusercontent.com/426437/96329959-7abd3300-1006-11eb-9c87-8e726d6d710a.png)
 
-
-## What to know more?
-
-See the live demo at Kubecon!
-
-https://kccncna20.sched.com/event/ekGL/gitops-cd-and-workflows-with-argo-hong-wang-alexander-matyushentsev-intuit
-
-![image](https://user-images.githubusercontent.com/426437/96330025-02a33d00-1007-11eb-8562-3630d5fc5ff5.png)

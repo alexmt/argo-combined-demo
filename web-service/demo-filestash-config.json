@@ -79,9 +79,9 @@
         {
             "access_key_id": "admin",
             "advanced": true,
-            "endpoint": "http://kubecon-demo-minio:9000",
+            "endpoint": "http://demo-minio:9000",
             "label": "S3",
-            "path": "/kubecon-demo",
+            "path": "/demo",
             "secret_access_key": "password",
             "type": "s3"
         }

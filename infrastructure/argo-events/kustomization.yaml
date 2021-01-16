@@ -5,4 +5,4 @@ resources:
 - https://raw.githubusercontent.com/argoproj/argo-events/v1.0.0/manifests/install.yaml
 - event-bus.yaml
 
-namespace: kubecon-demo
+namespace: demo

@@ -5,4 +5,4 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: argo-server
-  namespace: kubecon-demo
+  namespace: demo

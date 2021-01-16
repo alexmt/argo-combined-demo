@@ -5,5 +5,5 @@ resources:
 - upstream.yaml
 
 patchesStrategicMerge:
-- kubecon-demo-minio-service.yaml
-- kubecon-demo-minio-deployment.yaml
+- demo-minio-service.yaml
+- demo-minio-deployment.yaml
